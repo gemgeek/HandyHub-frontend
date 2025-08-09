@@ -5,8 +5,10 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import CustomerSignup from './pages/CustomerSignup';
-import DashboardLayout from './components/Dashboard/DashboardLayout'; // Import the new layout
-import CustomerDashboard from './pages/CustomerDashboard'; // Import the new dashboard page
+import ArtisanSignup from './pages/ArtisanSignup';
+import DashboardLayout from './components/Dashboard/DashboardLayout';
+import CustomerDashboard from './pages/CustomerDashboard';
+import ArtisanDashboard from './pages/ArtisanDashboard'; 
 
 // This layout will wrap all our pages.
 const MainLayout = () => {
@@ -29,10 +31,15 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/register/customer" element={<CustomerSignup />} />
+          <Route path="/register/artisan" element={<ArtisanSignup />} />
         </Route>
         {/* New route for the Customer Dashboard */}
         <Route path="/dashboard/customer" element={<DashboardLayout />}>
           <Route index element={<CustomerDashboard />} />
+        </Route>
+        {/* New route for the Artisan Dashboard */}
+        <Route path="/dashboard/artisan" element={<DashboardLayout />}>
+          <Route index element={<ArtisanDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
