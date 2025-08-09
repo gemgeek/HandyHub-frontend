@@ -6,9 +6,10 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import CustomerSignup from './pages/CustomerSignup';
 import ArtisanSignup from './pages/ArtisanSignup';
+import Login from './pages/Login'; 
 import DashboardLayout from './components/Dashboard/DashboardLayout';
 import CustomerDashboard from './pages/CustomerDashboard';
-import ArtisanDashboard from './pages/ArtisanDashboard'; 
+import ArtisanDashboard from './pages/ArtisanDashboard';
 
 // This layout will wrap all our pages.
 const MainLayout = () => {
@@ -32,12 +33,11 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/register/customer" element={<CustomerSignup />} />
           <Route path="/register/artisan" element={<ArtisanSignup />} />
+          <Route path="/login" element={<Login />} /> {/* Add the new Login route */}
         </Route>
-        {/* New route for the Customer Dashboard */}
         <Route path="/dashboard/customer" element={<DashboardLayout />}>
           <Route index element={<CustomerDashboard />} />
         </Route>
-        {/* New route for the Artisan Dashboard */}
         <Route path="/dashboard/artisan" element={<DashboardLayout />}>
           <Route index element={<ArtisanDashboard />} />
         </Route>
