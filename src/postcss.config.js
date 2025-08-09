@@ -1,5 +1,6 @@
-// filepath: c:\Users\HP\Desktop\HandyHub-frontend\postcss.config.js
-export const plugins = {
+export default {
+  plugins: {
     tailwindcss: {},
     autoprefixer: {},
-};
+  },
+}

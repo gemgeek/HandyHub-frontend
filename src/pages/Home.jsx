@@ -45,19 +45,19 @@ const Home = () => {
       </section>
 
       <section className="py-12">
-        <div className="container mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-8">Explore popular services</h2>
-          <div className="flex justify-center space-x-4 overflow-x-auto">
-            {/* These will be dynamically generated cards from our backend later */}
-            <ServiceCard title="Private Chef" imgUrl="https://placehold.co/200x200/ef4444/ffffff?text=Chef" />
-            <ServiceCard title="House Help" imgUrl="https://placehold.co/200x200/eab308/ffffff?text=House+Help" />
-            <ServiceCard title="Plumber" imgUrl="https://placehold.co/200x200/22c55e/ffffff?text=Plumber" />
-            <ServiceCard title="Electrician" imgUrl="https://placehold.co/200x200/0ea5e9/ffffff?text=Electrician" />
-            <ServiceCard title="Hairstylist" imgUrl="https://placehold.co/200x200/a855f7/ffffff?text=Hairstylist" />
-            <ServiceCard title="Painter" imgUrl="https://placehold.co/200x200/f97316/ffffff?text=Painter" />
-          </div>
-        </div>
-      </section>
+  <div className="container mx-auto text-center">
+    <h2 className="text-2xl font-bold mb-8">Explore popular services</h2>
+    <div className="flex flex-row flex-nowrap justify-center gap-4 overflow-x-auto px-2">
+      {/* ServiceCards here */}
+      <ServiceCard title="Private Chef" imgUrl="https://placehold.co/200x200/ef4444/ffffff?text=Chef" />
+      <ServiceCard title="House Help" imgUrl="https://placehold.co/200x200/eab308/ffffff?text=House+Help" />
+      <ServiceCard title="Plumber" imgUrl="https://placehold.co/200x200/22c55e/ffffff?text=Plumber" />
+      <ServiceCard title="Electrician" imgUrl="https://placehold.co/200x200/0ea5e9/ffffff?text=Electrician" />
+      <ServiceCard title="Hairstylist" imgUrl="https://placehold.co/200x200/a855f7/ffffff?text=Hairstylist" />
+      <ServiceCard title="Painter" imgUrl="https://placehold.co/200x200/f97316/ffffff?text=Painter" />
+    </div>
+  </div>
+</section>
     </div>
   );
 };
