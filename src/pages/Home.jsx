@@ -29,12 +29,12 @@ const Home = () => {
               <input
                 type="text"
                 placeholder="What service do you need?"
-                className="w-full px-4 py-2 rounded-full focus:outline-none"
+                className="w-full px-4 py-2 border-r-2 border-gray-200 rounded-l-full focus:outline-none"
               />
               <input
                 type="text"
                 placeholder="Where are you located?"
-                className="w-full px-4 py-2 rounded-full focus:outline-none"
+                className="w-full px-4 py-2 rounded-r-full focus:outline-none"
               />
               <button className="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors">
                 Find Now
@@ -43,21 +43,19 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       <section className="py-12">
-  <div className="container mx-auto text-center">
-    <h2 className="text-2xl font-bold mb-8">Explore popular services</h2>
-    <div className="flex flex-row flex-nowrap justify-center gap-4 overflow-x-auto px-2">
-      {/* ServiceCards here */}
-      <ServiceCard title="Private Chef" imgUrl="https://placehold.co/200x200/ef4444/ffffff?text=Chef" />
-      <ServiceCard title="House Help" imgUrl="https://placehold.co/200x200/eab308/ffffff?text=House+Help" />
-      <ServiceCard title="Plumber" imgUrl="https://placehold.co/200x200/22c55e/ffffff?text=Plumber" />
-      <ServiceCard title="Electrician" imgUrl="https://placehold.co/200x200/0ea5e9/ffffff?text=Electrician" />
-      <ServiceCard title="Hairstylist" imgUrl="https://placehold.co/200x200/a855f7/ffffff?text=Hairstylist" />
-      <ServiceCard title="Painter" imgUrl="https://placehold.co/200x200/f97316/ffffff?text=Painter" />
-    </div>
-  </div>
-</section>
+        <div className="container mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-8">Explore popular services</h2>
+          <div className="flex justify-center space-x-4 overflow-x-auto">
+            <ServiceCard title="Private Chef" imgUrl="https://placehold.co/200x200/ef4444/ffffff?text=Chef" />
+            <ServiceCard title="House Help" imgUrl="https://placehold.co/200x200/eab308/ffffff?text=House+Help" />
+            <ServiceCard title="Plumber" imgUrl="https://placehold.co/200x200/22c55e/ffffff?text=Plumber" />
+            <ServiceCard title="Electrician" imgUrl="https://placehold.co/200x200/0ea5e9/ffffff?text=Electrician" />
+            <ServiceCard title="Hairstylist" imgUrl="https://placehold.co/200x200/a855f7/ffffff?text=Hairstylist" />
+            <ServiceCard title="Painter" imgUrl="https://placehold.co/200x200/f97316/ffffff?text=Painter" />
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
