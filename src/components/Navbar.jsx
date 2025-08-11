@@ -5,11 +5,11 @@ const Navbar = () => {
   return (
     <header className="bg-white shadow-md">
       <nav className="container mx-auto p-4 flex justify-between items-center">
-        <div className="flex items-center">
+        <div className="flex items-center flex-1">
           <Link to="/" className="text-2xl font-bold text-orange-500">
-            HandyHub
+            <img src="/Handyhub-Logo2.png" alt="HandyHub Logo" className="h-10" />
           </Link>
-          <div className="hidden md:flex ml-10 space-x-6 text-gray-600">
+          <div className="hidden md:flex flex-1 justify-center space-x-6 text-gray-600">
             <Link to="/about" className="hover:text-orange-500 transition-colors">
               About Us
             </Link>
@@ -23,7 +23,7 @@ const Navbar = () => {
             Login
           </Link>
           <Link
-            to="/signup" 
+            to="/signup"
             className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors shadow-md"
           >
             Sign Up

@@ -6,7 +6,9 @@ const ArtisanDashboardLayout = () => {
     <div className="flex flex-col h-screen">
       {/* Top Bar (reusable) */}
       <header className="bg-orange-500 text-white p-4 flex justify-between items-center shadow-md">
-        <Link to="/" className="text-2xl font-bold">HandyHub</Link>
+        <Link to="/" className="text-2xl font-bold">
+          <img src="/Handyhub Logo.png" alt="HandyHub Logo" className="h-11" />
+        </Link>
         <div className="flex items-center space-x-4">
           <button className="text-white hover:text-gray-200 transition-colors">
             {/* Bell Icon (placeholder) */}
