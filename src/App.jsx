@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Outlet, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Outlet, Link, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -14,10 +14,10 @@ import ArtisanDashboardLayout from './components/Dashboard/ArtisanDashboardLayou
 import './index.css'; 
 
 // This layout will wrap all our pages.
-const MainLayout = () => {
+const MainLayout = ({ onLoginClick }) => {
   return (
     <div className="flex flex-col min-h-screen font-sans">
-      <Navbar />
+      <Navbar onLoginClick={onLoginClick} />
       <main className="flex-grow">
         <Outlet />
       </main>
@@ -27,10 +27,16 @@ const MainLayout = () => {
 };
 
 function App() {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const handleOpenLoginModal = () => setIsLoginModalOpen(true);
+  const handleCloseLoginModal = () => setIsLoginModalOpen(false);
+
   return (
     <BrowserRouter>
+      {isLoginModalOpen && <Login onClose={handleCloseLoginModal} />}
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={<MainLayout onLoginClick={handleOpenLoginModal} />}>
           <Route index element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/register/customer" element={<CustomerSignup />} />
@@ -50,3 +56,4 @@ function App() {
 };
 
 export default App;
+

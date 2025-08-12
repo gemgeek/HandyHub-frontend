@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ConfirmationModal from '../components/Modals/ConfirmationModal'; // Import the reusable modal
+import ConfirmationModal from '../components/Modals/ConfirmationModal';
+import axios from 'axios';
 
 const ArtisanSignup = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
+    username: '', 
     email: '',
     phone: '',
     password: '',
     confirmPassword: '',
+    nationalIdNumber: '',
     profession: '',
     yearsOfExperience: '',
     locationRegion: '',
@@ -18,9 +20,9 @@ const ArtisanSignup = () => {
     profilePhoto: '',
     bio: '',
   });
-
-  // State to control the visibility of the confirmation modal
+  
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
@@ -40,17 +42,48 @@ const ArtisanSignup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here we will add the logic to send this data to the backend API
-    console.log('Artisan signup form submitted:', formData);
     
-    // After a successful submission, show the confirmation modal
-    setIsConfirmationModalOpen(true);
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+
+    if (!formData.nationalIdNumber) {
+      setError('National ID Number is required.');
+      return;
+    }
+    
+    setError('');
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/register/', {
+        // We only send the fields that the RegisterSerializer expects
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        phone_number: formData.phone,
+        user_type: 'artisan',
+        national_id_number: formData.nationalIdNumber,
+      });
+
+      if (response.status === 201) {
+        setIsConfirmationModalOpen(true);
+      }
+    } catch (err) {
+      console.error('Registration failed:', err.response.data);
+      if (err.response && err.response.data) {
+        setError(Object.values(err.response.data).flat().join(' '));
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
+    }
   };
 
   const handleCloseConfirmationModal = () => {
     setIsConfirmationModalOpen(false);
+    navigate('/dashboard/artisan');
   };
 
   return (
@@ -60,21 +93,26 @@ const ArtisanSignup = () => {
         <p className="mt-2 text-sm text-center text-gray-500">
           Tell us about your services.
         </p>
+        
+        {error && (
+          <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
 
         <form className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6" onSubmit={handleSubmit}>
-          {/* ... (form fields are the same) ... */}
           {/* Basic Info Column */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-700">Basic Info:</h3>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Full Name</label>
+              <label className="block text-sm font-medium text-gray-700">Username</label>
               <input
                 type="text"
-                name="fullName"
-                value={formData.fullName}
+                name="username"
+                value={formData.username}
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm"
-                placeholder="John Doe"
+                placeholder="johndoe"
               />
             </div>
             <div>
@@ -122,52 +160,31 @@ const ArtisanSignup = () => {
               />
             </div>
           </div>
-
           {/* Professional Details Column */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-700">Professional Details:</h3>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Profession</label>
+              <label className="block text-sm font-medium text-gray-700">National ID Number</label>
               <input
                 type="text"
-                name="profession"
-                value={formData.profession}
+                name="nationalIdNumber"
+                value={formData.nationalIdNumber}
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm"
+                placeholder="GHA-123456789-0"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Years of Experience</label>
-              <input
-                type="number"
-                name="yearsOfExperience"
-                value={formData.yearsOfExperience}
+              <label className="block text-sm font-medium text-gray-700">Bio / Description</label>
+              <textarea
+                name="bio"
+                value={formData.bio}
                 onChange={handleChange}
+                rows="4"
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Location (Region)</label>
-              <input
-                type="text"
-                name="locationRegion"
-                value={formData.locationRegion}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Location (City)</label>
-              <input
-                type="text"
-                name="locationCity"
-                value={formData.locationCity}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm"
-              />
+              ></textarea>
             </div>
           </div>
-
           {/* Verification and Bio Column */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-700">Verification & Bio:</h3>
@@ -183,18 +200,7 @@ const ArtisanSignup = () => {
               <label className="block text-sm font-medium text-gray-700">Profile Photo</label>
               <input type="file" name="profilePhoto" onChange={handleFileChange} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100" />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Bio / Description</label>
-              <textarea
-                name="bio"
-                value={formData.bio}
-                onChange={handleChange}
-                rows="4"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm"
-              ></textarea>
-            </div>
           </div>
-          
           {/* Submit Button */}
           <div className="md:col-span-3">
             <button
@@ -212,8 +218,8 @@ const ArtisanSignup = () => {
           onClose={handleCloseConfirmationModal}
           title="Profile Submitted for Verification"
           message="Thank you for joining HandyHub as an artisan. We are reviewing your details to verify your profile. This may take up to 24 hours."
-          buttonText="Go to Dashboard" 
-          buttonPath="/dashboard/artisan" 
+          buttonText="Go to Dashboard"
+          buttonPath="/dashboard/artisan"
         />
       )}
     </div>

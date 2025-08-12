@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ onLoginClick }) => { // onLoginClick is now a prop
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -24,9 +24,12 @@ const Navbar = () => {
 
         {/* Desktop Login/Signup Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link to="/login" className="text-gray-600 hover:text-orange-500 transition-colors">
+          <button
+            onClick={onLoginClick} // This now opens the modal
+            className="text-gray-600 hover:text-orange-500 transition-colors"
+          >
             Login
-          </Link>
+          </button>
           <Link
             to="/signup"
             className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors shadow-md"
@@ -55,9 +58,12 @@ const Navbar = () => {
             <Link to="/how-it-works" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-gray-700">
               How It Works
             </Link>
-            <Link to="/login" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-gray-700">
+            <button
+              onClick={onLoginClick}
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-gray-700"
+            >
               Login
-            </Link>
+            </button>
             <Link
               to="/signup"
               className="block px-3 py-2 rounded-md text-base font-medium text-white bg-orange-500 hover:bg-orange-600 text-center"
