@@ -1,12 +1,83 @@
-# React + Vite
+# HandyHub - Frontend Application ✨🎨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-17.0.2-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-4.0-646cff?logo=vite)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![npm version](https://img.shields.io/badge/npm-v1.0.0-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/)
+[![Issues](https://img.shields.io/github/issues/gemgeek/HandyHub-frontend)](https://github.com/your-username/HandyHub-frontend/issues)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/gemgeek/HandyHub-frontend/ci.yml?label=build)](https://github.com/gemgeek/HandyHub-frontend/actions)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Project Overview  
+This project is the **frontend** for my capstone project, **HandyHub**.  
+It’s a web-based platform that connects users with verified local artisans and home service providers.  
+The application is built with a modern tech stack to provide a **clean, intuitive, and user-friendly** experience.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Key Features (Completed in Part 3)
+During the initial building phase, I focused on implementing the core pages and user flow.  
+The following features have been successfully developed:
+
+- **Homepage:** A welcoming landing page with a hero section, a functional search bar, and a list of popular services.  
+- **Navigation:** A responsive navigation bar and a clean footer integrated across the entire application.  
+- **Signup & Login Flow:** Full user authentication flow, including sign-up options for customers and artisans, plus a dedicated login page.  
+- **Dashboard Layouts:** Separate, dynamic dashboard layouts for both customer and artisan user types.
+
+---
+
+## 🛠 Tech Stack
+- ⚛️ **React:** JavaScript library for building user interfaces.  
+- ⚡️ **Vite:** For building a fast and smooth dev experience.  
+- 🎨 **Tailwind CSS:** For styling.  
+- 🔗 **React Router:** For handling navigation and creating multiple pages.
+
+---
+
+## 📷 Screenshots 
+
+*My Wireframe Design* 
+
+<img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/HandyHub%20Wireframe.png" alt="WF" width="400">
+
+*How it's going*
+
+<img src="https://github.com/gemgeek/gems-digital-journal/blob/main/assets/HH%20Code.jpeg" alt="HHC" width="400">
+
+---
+
+## 🚀 Future Plans
+📱 **Responsive Design:** Implement mobile-friendly versions of all pages.
+
+🔌 **API Integration:** Connect forms and dashboards to the backend API for real data and authentication.
+
+🎯 **Styling & Polish:** Refine the overall styling to perfectly match wireframe designs.
+
+⚠️ **Error Handling:** Implement robust error handling for user inputs and API responses.
+
+
+---
+
+## Getting Started  
+To run the HandyHub frontend locally:  
+
+**1. Clone the repository:**  
+```bash  
+git clone https://github.com/your-username/HandyHub-frontend.git  
+cd HandyHub-frontend  
+```  
+
+**2. Install dependencies:**  
+```bash  
+npm install  
+```  
+
+**3. Run the development server:**  
+```bash  
+npm run dev  
+```  
+
+The app will be available at:  
+[http://localhost:5173](http://localhost:5173)  
