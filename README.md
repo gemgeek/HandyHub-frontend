@@ -17,7 +17,7 @@ The application is built with a modern tech stack to provide a **clean, intuitiv
 
 ---
 
-## ✨ Key Features (Completed in Part 3)
+## ✨ Key Features 
 During the initial building phase, I focused on implementing the core pages and user flow.  
 The following features have been successfully developed:
 
