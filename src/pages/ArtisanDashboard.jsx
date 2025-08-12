@@ -27,7 +27,7 @@ const ArtisanDashboard = () => {
       
       {/* Pending Bookings Section */}
       <Card title="Pending Job Requests" className="mb-6">
-        <div className="flex space-x-4 overflow-x-auto">
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 overflow-x-auto">
           {pendingBookings.map((booking, index) => (
             <div key={index} className="flex-shrink-0 w-64 bg-gray-50 rounded-lg overflow-hidden shadow-sm p-4 text-sm">
               <div className="flex items-center space-x-2 mb-2">

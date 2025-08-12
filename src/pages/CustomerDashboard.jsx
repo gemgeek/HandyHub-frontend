@@ -1,11 +1,11 @@
 import React from 'react';
 
 // Reusable card component for services and bookings
-const Card = ({ children, title, subtitle }) => (
-  <div className="bg-white p-4 rounded-lg shadow-md">
+const Card = ({ children, title, subtitle, className = '' }) => (
+  <div className={`bg-white p-4 rounded-lg shadow-md ${className}`}>
     {title && <h3 className="text-xl font-bold mb-2">{title}</h3>}
     {subtitle && <p className="text-gray-600 mb-4">{subtitle}</p>}
-    <div className="flex space-x-4 overflow-x-auto">
+    <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 overflow-x-auto">
       {children}
     </div>
   </div>
@@ -31,7 +31,7 @@ const CustomerDashboard = () => {
       {/* Recommended Services Section */}
       <Card title="Recommended services based on your location">
         {recommendedServices.map((service, index) => (
-          <div key={index} className="flex-shrink-0 w-48 bg-gray-50 rounded-lg overflow-hidden shadow-sm p-2 text-sm">
+          <div key={index} className="flex-shrink-0 w-48 md:w-64 bg-gray-50 rounded-lg overflow-hidden shadow-sm p-2 text-sm">
             <img src={service.img} alt={service.name} className="w-full h-32 object-cover rounded mb-2" />
             <h4 className="font-bold">{service.name}</h4>
             <p className="text-gray-500 text-xs">{service.location}</p>
