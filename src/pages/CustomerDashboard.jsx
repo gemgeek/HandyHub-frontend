@@ -1,4 +1,5 @@
 import React from 'react';
+import useAuth from '../useAuth'; 
 
 // Reusable card component for services and bookings
 const Card = ({ children, title, subtitle, className = '' }) => (
@@ -12,6 +13,8 @@ const Card = ({ children, title, subtitle, className = '' }) => (
 );
 
 const CustomerDashboard = () => {
+  const user = useAuth(); // Use the hook to get user data
+
   const recommendedServices = [
     { name: 'Shoemaker (Cobbler)', location: 'Tema, Ghana', img: 'https://placehold.co/200x200/22c55e/ffffff?text=Cobbler' },
     { name: 'Househelp', location: 'Ashaiman N/T', img: 'https://placehold.co/200x200/eab308/ffffff?text=Househelp' },
@@ -26,7 +29,7 @@ const CustomerDashboard = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Welcome to your Dashboard!</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Welcome, {user?.firstName || 'User'}!</h1>
       
       {/* Recommended Services Section */}
       <Card title="Recommended services based on your location">

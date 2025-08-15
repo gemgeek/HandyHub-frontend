@@ -1,4 +1,5 @@
 import React from 'react';
+import useAuth from '../useAuth'; 
 
 // Reusable card component for services and bookings
 const Card = ({ children, title, subtitle, className = '' }) => (
@@ -10,6 +11,8 @@ const Card = ({ children, title, subtitle, className = '' }) => (
 );
 
 const ArtisanDashboard = () => {
+  const user = useAuth(); // Use the hook to get user data
+
   const pendingBookings = [
     { customer: 'Matilda Esenam Gbeve', service: 'Painting a wall', date: '10th August, 2025', location: 'Adenta, Accra', img: 'https://placehold.co/100x100/a855f7/ffffff?text=Matilda' },
     { customer: 'Tilly Bright', service: 'Painting a church', date: '15th August, 2025', location: 'Tema, Comm 2', img: 'https://placehold.co/100x100/f97316/ffffff?text=Tilly' },
@@ -20,10 +23,10 @@ const ArtisanDashboard = () => {
     <div>
       {/* Verification Banner */}
       <div className="bg-green-500 text-white p-4 rounded-lg shadow-md mb-6 text-center">
-        <h2 className="font-bold text-lg">Congratulations, John! Your profile has been verified!</h2>
+        <h2 className="font-bold text-lg">Congratulations, {user?.firstName || 'User'}! Your profile has been verified!</h2>
       </div>
 
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Welcome, John Doe!</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Welcome, {user?.firstName || 'User'}!</h1>
       
       {/* Pending Bookings Section */}
       <Card title="Pending Job Requests" className="mb-6">

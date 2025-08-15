@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = ({ onClose }) => {
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
   });
-
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,13 +18,48 @@ const Login = ({ onClose }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here we will add the logic to send this data to the backend API
-    console.log('Login form submitted:', formData);
-    // For now, let's just navigate to a default dashboard
-    onClose();
-    navigate('/dashboard/customer');
+    setError('');
+
+    try {
+      // Send the data to your Django backend's login endpoint
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/login/', {
+        username: formData.username,
+        password: formData.password,
+      });
+
+      if (response.status === 200) {
+        const { token, user_id, user_type, first_name, last_name } = response.data;
+        console.log('Login successful. Token:', token);
+
+        // Store user data in local storage
+        localStorage.setItem('user', JSON.stringify({
+          id: user_id,
+          token: token,
+          userType: user_type,
+          firstName: first_name,
+          lastName: last_name,
+        }));
+
+        onClose(); // Close the modal first
+
+        if (user_type === 'customer') {
+          navigate('/dashboard/customer');
+        } else if (user_type === 'artisan') {
+          navigate('/dashboard/artisan');
+        } else {
+          navigate('/');
+        }
+      }
+    } catch (err) {
+      console.error('Login failed:', err.response.data);
+      if (err.response && err.response.data) {
+        setError(Object.values(err.response.data).flat().join(' '));
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
+    }
   };
 
   return (
@@ -35,19 +71,24 @@ const Login = ({ onClose }) => {
         <div className="flex flex-col items-center text-center">
           <h2 className="text-3xl font-bold text-gray-800">Login to HandyHub</h2>
           <p className="mt-2 text-gray-500">
-            Use your email and password to log in.
+            Use your username and password to log in.
           </p>
         </div>
+        {error && (
+          <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
         <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email Address</label>
+            <label className="block text-sm font-medium text-gray-700">Username</label>
             <input
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
-              placeholder="john.doe@example.com"
+              placeholder="johndoe"
             />
           </div>
           <div>
