@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ onLoginClick }) => { // onLoginClick is now a prop
+const Navbar = ({ onLoginClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -13,7 +13,7 @@ const Navbar = ({ onLoginClick }) => { // onLoginClick is now a prop
             <img src="/Handyhub-Logo2.png" alt="HandyHub Logo" className="h-10" />
           </Link>
           <div className="hidden md:flex flex-1 justify-center space-x-6 text-gray-600">
-            <Link to="/about" className="hover:text-orange-500 transition-colors">
+            <Link to="/about-us" className="hover:text-orange-500 transition-colors">
               About Us
             </Link>
             <Link to="/how-it-works" className="hover:text-orange-500 transition-colors">
@@ -25,7 +25,7 @@ const Navbar = ({ onLoginClick }) => { // onLoginClick is now a prop
         {/* Desktop Login/Signup Buttons */}
         <div className="hidden md:flex items-center space-x-4">
           <button
-            onClick={onLoginClick} // This now opens the modal
+            onClick={onLoginClick}
             className="text-gray-600 hover:text-orange-500 transition-colors"
           >
             Login
@@ -52,7 +52,7 @@ const Navbar = ({ onLoginClick }) => { // onLoginClick is now a prop
       {isMenuOpen && (
         <div className="md:hidden bg-gray-50 p-4">
           <div className="flex flex-col space-y-4">
-            <Link to="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-gray-700">
+            <Link to="/about-us" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-gray-700">
               About Us
             </Link>
             <Link to="/how-it-works" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-gray-700">

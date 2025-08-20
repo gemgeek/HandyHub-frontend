@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // Placeholder for a reusable ServiceCard component
@@ -19,6 +19,27 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const scrollRef = useRef(null);
+  const navigate = useNavigate();
+
+  const [searchData, setSearchData] = useState({
+    service: '',
+    location: '',
+  });
+
+  const handleSearchChange = (e) => {
+    const { name, value } = e.target;
+    setSearchData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchData.service || searchData.location) {
+      navigate(`/search-results?service=${searchData.service}&location=${searchData.location}`);
+    }
+  };
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -54,23 +75,29 @@ const Home = () => {
           <p className="mt-4 text-sm md:text-lg text-gray-600">
             Find verified local plumbers, electricians, and more.
           </p>
-          <div className="mt-8 flex justify-center">
+          <form onSubmit={handleSearchSubmit} className="mt-8 flex justify-center">
             <div className="bg-white p-2 rounded-full shadow-lg flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 w-full max-w-2xl">
               <input
                 type="text"
+                name="service"
+                value={searchData.service}
+                onChange={handleSearchChange}
                 placeholder="What service do you need?"
                 className="w-full px-4 py-2 border-b-2 md:border-r-2 md:border-b-0 border-gray-200 rounded-t-full md:rounded-l-full md:rounded-r-none focus:outline-none text-center"
               />
               <input
                 type="text"
+                name="location"
+                value={searchData.location}
+                onChange={handleSearchChange}
                 placeholder="Where are you located?"
                 className="w-full px-4 py-2 rounded-b-full md:rounded-r-full md:rounded-l-none focus:outline-none text-center"
               />
-              <button className="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors">
+              <button type="submit" className="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors">
                 Find Now
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </section>
 
@@ -82,7 +109,6 @@ const Home = () => {
             onClick={() => scroll('left')}
             className="absolute left-0 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hidden md:block z-10"
           >
-            {/* Left Chevron Icon */}
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
@@ -100,7 +126,6 @@ const Home = () => {
             onClick={() => scroll('right')}
             className="absolute right-0 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hidden md:block z-10"
           >
-            {/* Right Chevron Icon */}
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

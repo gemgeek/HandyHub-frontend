@@ -62,11 +62,11 @@ const DashboardLayout = () => {
               &times;
             </button>
             <div className="flex items-center space-x-4 mb-6">
-              <img src="https://placehold.co/40x40" alt="User Avatar" className="rounded-full" />
-              <span className="font-semibold text-lg">Hello, {user?.firstName || 'User'}!</span>
+              <img src="/Handyhub Logo.png" alt="HandyHub Logo" className="h-8" />
             </div>
             <div className="space-y-4">
               {/* Mobile menu items with onClick handler */}
+              <Link to="/" onClick={handleLinkClick} className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><span>Home</span></Link>
               <Link to="/dashboard/customer" onClick={handleLinkClick} className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><span>Dashboard</span></Link>
               <Link to="/dashboard/customer/profile" onClick={handleLinkClick} className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><span>My Profile</span></Link>
               <Link to="/dashboard/customer/bookings" onClick={handleLinkClick} className="flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><span>My Bookings</span></Link>

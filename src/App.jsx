@@ -8,11 +8,14 @@ import CustomerSignup from './pages/CustomerSignup';
 import ArtisanSignup from './pages/ArtisanSignup';
 import Login from './pages/Login'; 
 import DashboardLayout from './components/Dashboard/DashboardLayout';
+import ArtisanDashboardLayout from './components/Dashboard/ArtisanDashboardLayout';
 import CustomerDashboard from './pages/CustomerDashboard';
 import ArtisanDashboard from './pages/ArtisanDashboard';
-import ArtisanDashboardLayout from './components/Dashboard/ArtisanDashboardLayout';
 import CustomerProfilePage from './pages/CustomerProfilePage';
 import ArtisanProfilePage from './pages/ArtisanProfilePage';
+import AboutUs from './pages/AboutUs'; 
+import HowItWorks from './pages/HowItWorks';
+import SearchResults from './pages/SearchResults';  
 import './index.css'; 
 
 // This layout will wrap all our pages.
@@ -43,6 +46,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/register/customer" element={<CustomerSignup />} />
           <Route path="/register/artisan" element={<ArtisanSignup />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/search-results" element={<SearchResults />} />
         </Route>
         <Route path="/dashboard/customer" element={<DashboardLayout />}>
           <Route index element={<CustomerDashboard />} />
@@ -58,4 +64,3 @@ function App() {
 };
 
 export default App;
-
