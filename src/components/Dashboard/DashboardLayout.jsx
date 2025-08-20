@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import useAuth from '../../useAuth';
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const user = useAuth();
 
-  // Function to close the sidebar
   const handleLinkClick = () => {
     setIsSidebarOpen(false);
   };
-
-  // Fetch user data from local storage when the component mounts
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
 
   return (
     <div className="flex flex-col h-screen">

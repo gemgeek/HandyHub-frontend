@@ -59,7 +59,6 @@ const ArtisanSignup = () => {
 
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/auth/register/', {
-        // We only send the fields that the RegisterSerializer expects
         username: formData.username,
         email: formData.email,
         password: formData.password,

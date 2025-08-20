@@ -11,6 +11,8 @@ import DashboardLayout from './components/Dashboard/DashboardLayout';
 import CustomerDashboard from './pages/CustomerDashboard';
 import ArtisanDashboard from './pages/ArtisanDashboard';
 import ArtisanDashboardLayout from './components/Dashboard/ArtisanDashboardLayout';
+import CustomerProfilePage from './pages/CustomerProfilePage';
+import ArtisanProfilePage from './pages/ArtisanProfilePage';
 import './index.css'; 
 
 // This layout will wrap all our pages.
@@ -42,13 +44,13 @@ function App() {
           <Route path="/register/customer" element={<CustomerSignup />} />
           <Route path="/register/artisan" element={<ArtisanSignup />} />
         </Route>
-        {/* Route for the Customer Dashboard using its dedicated layout */}
         <Route path="/dashboard/customer" element={<DashboardLayout />}>
           <Route index element={<CustomerDashboard />} />
+          <Route path="profile" element={<CustomerProfilePage />} />
         </Route>
-        {/* Route for the Artisan Dashboard using its dedicated layout */}
         <Route path="/dashboard/artisan" element={<ArtisanDashboardLayout />}>
           <Route index element={<ArtisanDashboard />} />
+          <Route path="profile" element={<ArtisanProfilePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
